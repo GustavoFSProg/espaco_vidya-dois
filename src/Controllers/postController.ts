@@ -1,4 +1,5 @@
 var cloudinary = require('cloudinary')
+import { Request, Response } from 'express'
 
 import { PrismaClient } from '@prisma/client'
 
@@ -11,7 +12,7 @@ dotenv.config()
 var imagem = ''
 var resultado = ''
 
-async function register(req, res) {
+async function register(req: Request, res: Response) {
   try {
     cloudinary.config({
       cloud_name: process.env.CLOUD_NAME,
@@ -19,7 +20,7 @@ async function register(req, res) {
       api_secret: process.env.API_SECRET,
     })
 
-    cloudinary.uploader.upload(req.file.path, function (result, error) {
+    cloudinary.uploader.upload(req.file?.path, function (result: any, error: any) {
       // console.log(result, error)
       imagem = result.secure_url
       resultado = result
@@ -41,7 +42,7 @@ async function register(req, res) {
   }
 }
 
-async function getAll(req, res) {
+async function getAll(req: Request, res: Response) {
   try {
     const data = await prisma.posts.findMany()
 

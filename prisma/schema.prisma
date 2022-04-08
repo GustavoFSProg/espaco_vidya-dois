@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,7 +8,7 @@ datasource db {
 }
 
 model Posts {
-  id        String   @id @default(uuid()) @map("_id")
+  id        String   @id @default(uuid())
   title     String
   image     String?
   autor     String
