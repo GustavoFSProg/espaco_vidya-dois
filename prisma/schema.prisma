@@ -1,0 +1,20 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./devs.db"
+}
+
+model Posts {
+  id        String   @id @default(uuid()) @map("_id")
+  title     String
+  image     String?
+  autor     String
+  text      String
+  likes     Int?     @default(0)
+  views     Int?     @default(0)
+  createdAt DateTime @default(now())
+}
