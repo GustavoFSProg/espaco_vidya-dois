@@ -1,20 +1,20 @@
 import express from 'express'
-import cors from 'cors'
 import { config } from 'dotenv'
-import route from './routes'
+import cors from 'cors'
+import route from './route'
 
 config()
 
-const { PORT } = process.env
-
 const app = express()
+
+const { PORT } = process.env
 
 app.use(express.json())
 app.use(cors())
 app.use(route)
 
 app.listen(PORT, () => {
-  console.log(` 🧑 API running: ${PORT} `)
+  console.log(` 🌲 Api Running on: ${PORT}`)
 })
 
 export default app
