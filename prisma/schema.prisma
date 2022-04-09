@@ -1,19 +1,22 @@
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = "file:./devs.db"
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
 }
 
 model Posts {
-  id        String   @id @default(uuid())
-  title     String
-  image     String?
-  autor     String
-  text      String
-  likes     Int?     @default(0)
-  views     Int?     @default(0)
-  createdAt DateTime @default(now())
+  id          String   @id @default(uuid()) @map("_id")
+  title       String
+  image       String?
+  autor       String
+  text        String
+  description String   @default("Descrição")
+  likes       Int?     @default(0)
+  views       Int?     @default(0)
+  createdAt   DateTime @default(now())
+
 }

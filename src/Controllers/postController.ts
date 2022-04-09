@@ -28,16 +28,17 @@ async function register(req: Request, res: Response) {
       console.log(resultado)
     })
 
-    const user = await prisma.posts.create({
+    const posts = await prisma.posts.create({
       data: {
         title: req.body.title,
-        image: imagem,
-        autor: req.body.autor,
+        image: req.body.image,
         text: req.body.text,
+        autor: req.body.autor,
+        description: req.body.description,
       },
     })
 
-    return res.status(201).send({ msg: 'user created successfuly!', user })
+    return res.status(201).send({ msg: 'user created successfuly!', posts })
   } catch (error) {
     return res.status(400).json({ msg: 'ERROS!!', error })
   }
