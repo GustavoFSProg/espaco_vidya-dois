@@ -1,7 +1,7 @@
 const multer = require('multer')
 import { Request } from 'express'
 
-export const uploadConfig = {
+const uploadConfig = {
   storage: new multer.diskStorage({
     // destination: path.resolve(__dirname, '..', '..', 'uploads'),
     filename: function (req: Request, file: any, cb: any) {
@@ -11,3 +11,5 @@ export const uploadConfig = {
     },
   }),
 }
+
+export default uploadConfig

@@ -1,9 +1,9 @@
 import express from 'express'
-import { config } from 'dotenv'
+import dotenv from 'dotenv'
 import cors from 'cors'
 import route from './route'
 
-config()
+dotenv.config()
 
 const app = express()
 
