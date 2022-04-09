@@ -12,6 +12,7 @@ route.get('/', (req: Request, res: Response) => {
 })
 
 route.get('/getall', postController.getAll)
+route.get('/get-one', postController.getLast)
 route.post('/register', upload.single('image'), postController.register)
 
 export default route

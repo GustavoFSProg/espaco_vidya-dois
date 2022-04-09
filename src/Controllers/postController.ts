@@ -31,7 +31,7 @@ async function register(req: Request, res: Response) {
     const posts = await prisma.posts.create({
       data: {
         title: req.body.title,
-        image: req.body.image,
+        image: imagem,
         text: req.body.text,
         autor: req.body.autor,
         description: req.body.description,
@@ -46,7 +46,13 @@ async function register(req: Request, res: Response) {
 
 async function getAll(req: Request, res: Response) {
   try {
-    const data = await prisma.posts.findMany()
+    const data = await prisma.posts.findMany({
+      take: 3,
+
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
 
     return res.status(200).json(data)
   } catch (error) {
@@ -54,4 +60,20 @@ async function getAll(req: Request, res: Response) {
   }
 }
 
-export default { register, getAll }
+async function getLast(req: Request, res: Response) {
+  try {
+    const data = await prisma.posts.findFirst({
+      take: 1,
+
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+
+    return res.status(200).json(data)
+  } catch (error) {
+    return res.status(400).json(error)
+  }
+}
+
+export default { register, getAll, getLast }
