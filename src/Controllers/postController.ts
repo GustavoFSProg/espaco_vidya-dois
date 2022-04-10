@@ -63,13 +63,11 @@ async function getAll(req: Request, res: Response) {
 
 async function getLast(req: Request, res: Response) {
   try {
-    const data = await prisma.posts.create({
-      data: {
-        title: req.body.title,
-        image: imagem,
-        text: req.body.text,
-        autor: req.body.autor,
-        description: req.body.description,
+    const data = await prisma.posts.findFirst({
+      take: 1,
+
+      orderBy: {
+        createdAt: 'desc',
       },
     })
 
