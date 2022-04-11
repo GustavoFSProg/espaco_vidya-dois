@@ -14,7 +14,7 @@ route.get('/', (req: Request, res: Response) => {
 })
 
 route.get('/getall', postController.getAll)
-route.get('/get-one', postController.getLast)
+route.get('/get-one', isAuthorized, postController.getLast)
 route.put('/update/:id', isAuthorized, upload.single('image'), postController.update)
 route.delete('/del/:id', isAuthorized, postController.deletar)
 route.post('/register', isAuthorized, upload.single('image'), postController.register)
