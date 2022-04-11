@@ -14,7 +14,7 @@ app.use(cors())
 app.use(routes)
 
 app.listen(PORT, () => {
-  console.log(` 🧑 API running: ${PORT}`)
+  console.log(`  🧑 API running: ${PORT}`)
 })
 
 export default app
