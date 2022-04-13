@@ -1,10 +1,11 @@
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = "file:./devs.db"
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
 }
 
 model Posts {
@@ -21,9 +22,9 @@ model Posts {
 }
 
 model Users {
-  id       String  @id @default(uuid()) @map("_id")
+  id       String @id @default(uuid()) @map("_id")
   name     String
-  email    String? @unique()
+  email    String @unique
   password String
 
 }

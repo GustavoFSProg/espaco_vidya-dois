@@ -86,12 +86,31 @@ async function update(req: Request, res: Response) {
       CLOUDINARY_URL: process.env.CLOUDINARY_URL,
     })
 
-    cloudinary.uploader.upload(req.file?.path, function (result: any, error: any) {
-      // console.log(result, error)
-      imagemDB = result.secure_url
-      resultado = result
-      // console.log(resultado)
-    })
+    // cloudinary.v2.uploader.upload(
+    //   req.file?.path,
+    //   {
+    //     resource_type: 'video',
+    //     public_id: 'myfolder/mysubfolder/my_dog',
+    //     overwrite: true,
+    //     notification_url: 'https://mysite.example.com/notify_endpoint',
+    //   },
+    //   function (error: any, result: any) {
+    //     imagemDB = result.secure_url
+    //     console.log(result, error)
+    //   }
+    // )
+
+    cloudinary.uploader.upload(
+      req.file?.path,
+      { resource_type: 'file' },
+      function (result: any, error: any) {
+        // console.log(result, error)
+        imagemDB = result.secure_url
+        resultado = result
+        // console.log(resultado)
+      }
+    )
+
     const { id } = req.params
 
     console.log(imagemDB)
